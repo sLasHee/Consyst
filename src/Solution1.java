@@ -1,6 +1,5 @@
 import java.util.*;
 
-//Требуется доработать вывод результата.
 public class Solution1 {
 
     static String format(int timeInSeconds) {
@@ -21,27 +20,36 @@ public class Solution1 {
             String sMinute = "minute";
             String sSecond = "second";
 
-            String plural = "s";
-
             LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
             map.put(sYear, year);
             map.put(sDay, day);
             map.put(sHour, hour);
             map.put(sMinute, minute);
             map.put(sSecond, second);
-
-            map.entrySet().removeIf(entry -> entry.getValue() == 0);
-
-            StringBuilder result = new StringBuilder();
+            String result = "";
+            List<String> list = new ArrayList<>();
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                if (entry.getValue() > 1)
-                    result.append(entry.getValue()).append(" ").append(entry.getKey()).append(plural).append(",").append(" ");
-                else
-                    result.append(entry.getValue()).append(" ").append(entry.getKey()).append(",").append(" ");
+                if (entry.getValue()!=0)
+                    list.add(entry.getKey());
             }
-            return result.toString();
+            if (list.size()==1)
+                result = map.get(list.get(0)).toString()+" "+list.get(0);
+            else if (list.size()==2)
+                result = map.get(list.get(0)).toString()+" "+list.get(0) + " and " + map.get(list.get(1)).toString()+" "+list.get(1);
+            else {
+                for (int i = 0; i < list.size(); i++) {
+                    result += map.get(list.get(i)).toString()+" "+list.get(i);
+                    if (map.get(list.get(i))>1)
+                        result += "s";
+                    if (i==list.size()-2)
+                        result += " and ";
+                    else if (i==list.size()-1)
+                        break;
+                    else
+                        result += ", ";
+                }
+            }
+            return result;
         }
     }
 }
-
-
