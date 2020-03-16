@@ -22,6 +22,7 @@ public class Solution1 {
             map.put("second", second);
 
             List<String> list = new ArrayList<>();
+
             String result = "";
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
                 if (entry.getValue()!=0)
