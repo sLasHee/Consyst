@@ -4,7 +4,7 @@ public class Solution1 {
 
     static String format(int timeInSeconds) {
         if (timeInSeconds < 0)
-            return "Error: This is a negative value";
+            return "Error. This is a negative value";
         if (timeInSeconds == 0)
             return "now";
         else {
@@ -14,20 +14,17 @@ public class Solution1 {
             int minute = (timeInSeconds % 3600) / 60;
             int second = timeInSeconds % 60;
 
-            String sYear = "year";
-            String sDay = "day";
-            String sHour = "hour";
-            String sMinute = "minute";
-            String sSecond = "second";
-
             LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
-            map.put(sYear, year);
-            map.put(sDay, day);
-            map.put(sHour, hour);
-            map.put(sMinute, minute);
-            map.put(sSecond, second);
-            String result = "";
+            map.put("year", year);
+            map.put("day", day);
+            map.put("hour", hour);
+            map.put("minute", minute);
+            map.put("second", second);
+
             List<String> list = new ArrayList<>();
+
+            String result = "";
+
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
                 if (entry.getValue()!=0)
                     list.add(entry.getKey());
